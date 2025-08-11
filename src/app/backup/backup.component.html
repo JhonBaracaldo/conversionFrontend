@@ -1,0 +1,45 @@
+<div class="backup-container">
+	<h2>Gestión de Backups</h2>
+
+	<section>
+		<h3>Subir archivo .bak</h3>
+		<input type="file" (change)="onFileSelected($event)" accept=".bak" />
+		<button (click)="uploadBackup()">Subir</button>
+		<div class="result">{{ uploadResult }}</div>
+	</section>
+
+		<section>
+			<h3>Restaurar Backup</h3>
+			<input type="text" placeholder="Nombre del archivo .bak" [(ngModel)]="bakFile" />
+			<input type="text" placeholder="Nombre de la base de datos" [(ngModel)]="dbName" />
+			<div class="db-note">
+				<strong>Nota:</strong> El nombre correcto de la base de datos es <span style="color:#1976d2">IOSFINANCIERO_CAJICA_EPC_2025</span>
+			</div>
+			<button (click)="restoreBackup()">Restaurar</button>
+			<div class="result">{{ restoreResult }}</div>
+		</section>
+
+		<section>
+			<h3>Listar Tablas</h3>
+			<button (click)="getDatabases()">Cargar bases de datos</button>
+      <select [(ngModel)]="selectedDatabase" (change)="onDatabaseChange()">
+        <option value="" disabled selected>Selecciona una base de datos</option>
+        <option *ngFor="let db of databases" [value]="db">{{ db }}</option>
+      </select>
+			<button (click)="listarTablas()">Listar tablas</button>
+			<ul>
+				<li *ngFor="let tabla of tablas">
+					{{ tabla }}
+					<button (click)="exportarTablaCsv(tabla)">Exportar CSV</button>
+				</li>
+			</ul>
+			<div class="result">{{ exportResult }}</div>
+		</section>
+
+	<section>
+		<h3>Buscar Tabla</h3>
+		<input type="text" placeholder="Nombre de la tabla" [(ngModel)]="tablaBuscar" />
+		<button (click)="buscarTabla()">Buscar</button>
+		<div class="result">{{ resultadoBuscar }}</div>
+	</section>
+</div>
