@@ -1,45 +1,29 @@
 <div class="backup-container">
-	<h2>Gestión de Backups</h2>
-
-	<section>
-		<h3>Subir archivo .bak</h3>
-		<input type="file" (change)="onFileSelected($event)" accept=".bak" />
-		<button (click)="uploadBackup()">Subir</button>
-		<div class="result">{{ uploadResult }}</div>
-	</section>
-
-		<section>
-			<h3>Restaurar Backup</h3>
-			<input type="text" placeholder="Nombre del archivo .bak" [(ngModel)]="bakFile" />
-			<input type="text" placeholder="Nombre de la base de datos" [(ngModel)]="dbName" />
-			<div class="db-note">
-				<strong>Nota:</strong> El nombre correcto de la base de datos es <span style="color:#1976d2">IOSFINANCIERO_CAJICA_EPC_2025</span>
-			</div>
-			<button (click)="restoreBackup()">Restaurar</button>
-			<div class="result">{{ restoreResult }}</div>
-		</section>
-
-		<section>
-			<h3>Listar Tablas</h3>
-			<button (click)="getDatabases()">Cargar bases de datos</button>
-      <select [(ngModel)]="selectedDatabase" (change)="onDatabaseChange()">
-        <option value="" disabled selected>Selecciona una base de datos</option>
-        <option *ngFor="let db of databases" [value]="db">{{ db }}</option>
-      </select>
-			<button (click)="listarTablas()">Listar tablas</button>
-			<ul>
-				<li *ngFor="let tabla of tablas">
-					{{ tabla }}
-					<button (click)="exportarTablaCsv(tabla)">Exportar CSV</button>
-				</li>
-			</ul>
-			<div class="result">{{ exportResult }}</div>
-		</section>
-
-	<section>
-		<h3>Buscar Tabla</h3>
-		<input type="text" placeholder="Nombre de la tabla" [(ngModel)]="tablaBuscar" />
-		<button (click)="buscarTabla()">Buscar</button>
-		<div class="result">{{ resultadoBuscar }}</div>
-	</section>
+    <div class="progress-bar-container">
+        <div class="progress-bar" style="width: 33.3%;"></div>
+        <div class="progress-bar active" style="width: 33.3%;"></div>
+        <div class="progress-bar" style="width: 33.3%;"></div>
+    </div>
+    <h2>Cargue de archivo .bak</h2>
+    <div class="drop-zone"
+         (dragover)="onDragOver($event)"
+         (dragleave)="onDragLeave($event)"
+         (drop)="onDrop($event)">
+        <div class="cloud-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload-cloud">
+                <path d="M16 16l-4-4-4 4"></path>
+                <path d="M12 12v9"></path>
+                <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+                <polyline points="16 16 12 12 8 16"></polyline>
+            </svg>
+        </div>
+        <input type="file" #fileInput hidden (change)="onFileSelected($event)" accept=".bak" />
+        <button class="file-select-button" (click)="fileInput.click()">Escoja archivo</button>
+        <p>Escoja su archivo o arrastre y suelte aquí</p>
+    </div>
+    <div class="action-buttons">
+        <button class="upload-button" (click)="uploadBackup()">Subir <span class="arrow-right">→</span></button>
+        <button class="restore-button" (click)="restoreBackup()">Restaurar <span class="cross">×</span></button>
+    </div>
+    <div class="result">{{ uploadResult || restoreResult }}</div>
 </div>

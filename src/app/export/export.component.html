@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convertidor .Back</title>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Convertidor .Back</h1>
+
+    <!-- Carga de archivo -->
+    <div class="upload-box">
+      <label for="fileInput" class="label">Cargue de archivo .bak</label>
+      <div class="file-input-wrapper">
+        <input type="text" id="fileInput" value="ALMACEN_BIENESBODEGA2025.BAK" readonly>
+        <button class="delete-btn">🗑️</button>
+      </div>
+      <div class="actions">
+        <button class="btn upload">Subir ➜</button>
+        <button class="btn restore">Restaurar ➜</button>
+      </div>
+    </div>
+
+    <!-- Mensaje de confirmación -->
+    <p class="success-message">
+      El archivo <strong>ALMACEN_BIENESBODEGA2025</strong> ha sido restaurado correctamente.
+    </p>
+
+    <!-- Tabla -->
+    <div class="table-container">
+      <input type="text" class="search" placeholder="Buscar tabla">
+      <table>
+        <thead>
+          <tr>
+            <th>Seleccionar</th>
+            <th>Nombre base de datos ⬇</th>
+            <th>Descargar ⬇</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="radio" name="tabla"></td>
+            <td>ALMACEN_ALTAS_DETALLE</td>
+            <td><a href="#"><img src="excel-icon.png" alt="Excel" class="icon"></a></td>
+          </tr>
+          <tr>
+            <td><input type="radio" name="tabla"></td>
+            <td>ALMACEN_ALTAS_DETALLE</td>
+            <td><a href="#"><img src="excel-icon.png" alt="Excel" class="icon"></a></td>
+          </tr>
+          <tr>
+            <td><input type="radio" name="tabla" checked></td>
+            <td>VENTANILLA_TIPO_NOTIFICACION</td>
+            <td><a href="#"><img src="excel-icon.png" alt="Excel" class="icon"></a></td>
+          </tr>
+          <tr>
+            <td><input type="radio" name="tabla"></td>
+            <td>ALMACEN_ALTAS_DETALLE</td>
+            <td><a href="#"><img src="excel-icon.png" alt="Excel" class="icon"></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

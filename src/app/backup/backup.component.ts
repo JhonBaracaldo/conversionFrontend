@@ -12,6 +12,23 @@ import { BackendService } from '../services/backend.service';
   styleUrl: './backup.component.css'
 })
 export class BackupComponent {
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    if (event.dataTransfer && event.dataTransfer.files.length > 0) {
+      const file = event.dataTransfer.files[0];
+      this.selectedFile = file;
+      this.bakFile = file.name;
+      this.uploadBackup();
+    }
+  }
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+  }
+
+  onDragLeave(event: DragEvent) {
+    event.preventDefault();
+  }
   uploadBackup() {
     if (!this.selectedFile) {
       this.uploadResult = 'Por favor selecciona un archivo .bak primero.';
