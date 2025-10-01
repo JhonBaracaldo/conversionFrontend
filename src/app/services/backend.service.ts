@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BackendService {
-  private apiUrl = 'http://localhost:8004/api/backup'; // Cambia el puerto si tu backend usa otro
+  private apiUrl = 'http://192.168.2.3/:8004/api/backup'; // Cambia el puerto si tu backend usa otro
 
   constructor(private http: HttpClient) { }
 

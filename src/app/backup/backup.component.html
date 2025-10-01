@@ -5,7 +5,34 @@
         <div class="progress-bar" style="width: 33.3%;"></div>
     </div>
     <h2>Cargue de archivo .bak</h2>
-    <div class="drop-zone"
+    <form [formGroup]="fileForm" (ngSubmit)="onSubmit()">
+        <div class="drop-zone" 
+            (dragover)="onDragOver($event)"
+            (dragleave)="onDragLeave($event)"
+            (drop)="onDrop($event)">
+            <div class="cloud-icon">
+     
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload-cloud">
+                <path d="M16 16l-4-4-4 4"></path>
+                <path d="M12 12v9"></path>
+                <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+                <polyline points="16 16 12 12 8 16"></polyline>
+            </svg>
+            </div>
+            
+          
+            <input formControlName="file" type="file" #fileInput (change)="onFileChange($event)" />
+            
+            <button mat-raised-button color="primary" class="file-select-button" (click)="fileInput.click()">Escoja archivo</button>
+            <p>Escoja su archivo o arrastre y suelte aquí</p>
+        </div>
+        
+        <div class="action-buttons">
+            <button mat-raised-button color="accent" class="upload-button" type="submit" [disabled]="!fileForm.valid">Subir →</button>
+            <button mat-raised-button color="warn" class="restore-button" (click)="restoreBackup()">Restaurar ×</button>
+        </div>
+    </form>
+    <!-- <div class="drop-zone"
          (dragover)="onDragOver($event)"
          (dragleave)="onDragLeave($event)"
          (drop)="onDrop($event)">
@@ -17,7 +44,7 @@
                 <polyline points="16 16 12 12 8 16"></polyline>
             </svg>
         </div>
-        <input type="file" #fileInput hidden (change)="onFileSelected($event)" accept=".bak" />
+        <input type="file" #fileInput hidden (change)="seleccionarArchivo()" accept=".bak" />
         <button class="file-select-button" (click)="fileInput.click()">Escoja archivo</button>
         <p>Escoja su archivo o arrastre y suelte aquí</p>
     </div>
@@ -25,5 +52,5 @@
         <button class="upload-button" (click)="uploadBackup()">Subir <span class="arrow-right">→</span></button>
         <button class="restore-button" (click)="restoreBackup()">Restaurar <span class="cross">×</span></button>
     </div>
-    <div class="result">{{ uploadResult || restoreResult }}</div>
+    <div class="result">{{ uploadResult || restoreResult }}</div> -->
 </div>
